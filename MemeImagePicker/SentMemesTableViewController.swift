@@ -1,8 +1,6 @@
-
-
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   var memes: [Meme]! {
       let object = UIApplication.shared.delegate
@@ -19,20 +17,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell", for: indexPath)
+      let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")!
       let meme = self.memes[(indexPath as NSIndexPath).row]
       
-      // Set the name and image
+      cell.textLabel?.text = "\(meme.topText) ... \(meme.bottomText)"
       cell.imageView?.image = meme.memedImage
-      
+
       return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-       detailController.meme = self.memes[(indexPath as NSIndexPath).row]
-       self.navigationController!.pushViewController(detailController, animated: true)
+      let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+      detailController.meme = self.memes[(indexPath as NSIndexPath).row]
+      self.navigationController!.pushViewController(detailController, animated: true)
      }
-  
   }
-

@@ -70,7 +70,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in
       if completed {
         self.save(memedImage)
-        let sentMemesController = self.storyboard!.instantiateViewController(withIdentifier: "SentMemesCollectionViewController") as! SentMemesCollectionViewController
+        let sentMemesController = self.storyboard!.instantiateViewController(withIdentifier: "SentMemesTableViewController") as! SentMemesTableViewController
         self.navigationController!.pushViewController(sentMemesController, animated: true)
 
         return
@@ -92,7 +92,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     textField.delegate = self
     textField.textAlignment = .center
     textField.defaultTextAttributes = memeTextAttributes
-    print(text, "input text")
     textField.text = text
   }
   
